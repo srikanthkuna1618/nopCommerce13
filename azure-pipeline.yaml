@@ -3,12 +3,14 @@ pool:
   name: default
 trigger:
   - master
-steps: 
-  - task: DotNetCoreInstaller@1
+  - task: UseDotNet@2
     inputs:
       packageType: 'sdk'
       version: '8.0.3'
-    packageType: 'sdk'
+steps:
+  - script: dotnet --list-runtimes
+    displayName: dotnet version
+    continueOnError: true
   - task: DotNetCoreCLI@2
     inputs:
       command: publish
