@@ -1,10 +1,14 @@
 --- 
-
 pool:
   name: default
 trigger:
-  - develop
+  - master
 steps: 
+  - task: DotNetCoreInstaller@1
+    inputs:
+      packageType: 'sdk'
+      version: '8.0.3'
+    packageType: 'sdk'
   - task: DotNetCoreCLI@2
     inputs:
       command: publish
@@ -12,4 +16,3 @@ steps:
       projects: '/src/Presentation/Nop.Web.csproj'
       arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
       zipAfterPublish: true
-      
