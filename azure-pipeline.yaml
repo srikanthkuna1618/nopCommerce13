@@ -1,0 +1,15 @@
+--- 
+
+pool:
+  name: default
+trigger:
+  - develop
+steps: 
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: publish
+      publishWebProjects: false
+      projects: '/src/Presentation/Nop.Web.csproj'
+      arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
+      zipAfterPublish: true
+      
